@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset='utf-8' />
+    <title>New words form</title> 
+    <link rel="stylesheet" type="text/css" href="form.css" />
+  </head>
+
+<body>
+  <div id = "screen">
+    <div id = "formContainer">
+    	<form id="newWordForm" method="POST" action="/api/arabic_words/post-feedback">
+    	  <label for="ar_latin">Arabic:</label><br>
+    	  <input type="text" id="ar_latin" name="ar_latin"><br>
+    	  <label for="root">Root:</label><br>
+    	  <input type="text" id="root" name="root"><br>
+    	  <label for="hun">Hungarian:</label><br>
+    	  <input type="text" id="hun" name="hun"><br>
+    	  <label for="wordType">Word type:</label><br>
+    	  <input type="text" id="wordType" name="wordType"><br>
+    	  <label for="plural">Plural:</label><br>
+    	  <input type="text" id="plural" name="plural"><br>
+    	  <label for="verbVowel">Verb vowel:</label><br>
+    	  <input type="text" id="verbVowel" name="verbVowel"><br>
+    	  <label for="infinitive">Infinitive:</label><br>
+    	  <input type="text" id="infinitive" name="infinitive"><br>
+    	  <label for="tags">Tags:</label><br>
+    	  <input type="text" id="tags" name="tags"><br>
+    	  <input type="submit" value="Submit">
+    	</form>
+    </div>
+  </div>
+</body>
+

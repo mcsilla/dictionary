@@ -1,0 +1,41 @@
+html
+  head
+    meta(charset='utf-8')
+    title= title
+    link(rel="stylesheet" type="text/css" href="dictionary.css")
+  body
+    div(id="screen")
+      ul(id="navbar")
+        li
+          a(href="http://localhost:3000/api/arabic_words/dictionary" class=".navItem") Dictionary
+        li
+          a(href="http://localhost:3000/api/arabic_words/new-word" class=".navItem") New word
+        li
+          a(href="http://localhost:3000/api/arabic_words/learning" class=".navItem") Learning 
+      if selectedOption === "new-word"
+        h1 new-word
+      else if selectedOption === "learning"
+        h1 learning
+      else if selectedOption === "test"
+        h1 test
+      else if selectedOption === "dictionary"         
+        div(id="tableContainer")
+          table(id="table")
+            tr
+              th Hungarian
+              th(style="text-align: right") Arabic
+      
+            each w in words
+              tr(class="tableRow")
+                td= w.hun
+                if w.wordType === 'noun' || w.wordType === 'adjective'
+                  td(dir="rtl" lang='ar' class="arabicCell")!= toArabScript(w.ar_latin) + " (" + toArabScript(w.plural) + ")"
+                else if w.wordType === 'verb'
+                  td(dir="rtl" lang='ar' class="arabicCell")!= toArabScript(w.ar_latin) + " (" + w.verbVowel + ")" + " (" + toArabScript(w.infinitive) + ")"
+                else
+                  td(dir="rtl" lang='ar' class="arabicCell")!= toArabScript(w.ar_latin)
+        div(id="pages")
+          - var n = 1;
+          while n < maxPage
+            a(href="http://localhost:3000/api/arabic_words/" + n class="pageItem")= n++
+
