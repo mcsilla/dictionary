@@ -1,0 +1,19 @@
+div(id="tableContainer")
+  table(id="table")
+    tr
+      th Hungarian
+      th(style="text-align: right") Arabic
+
+    each w in words
+      tr(class="tableRow")
+        td= w.hun
+        if w.wordType === 'noun' || w.wordType === 'adjective'
+          td(dir="rtl" lang='ar' class="arabicCell")!= toArabScript(w.ar_latin) + " (" + toArabScript(w.plural) + ")"
+        else if w.wordType === 'verb'
+          td(dir="rtl" lang='ar' class="arabicCell")!= toArabScript(w.ar_latin) + " (" + w.verbVowel + ")" + " (" + toArabScript(w.infinitive) + ")"
+        else
+          td(dir="rtl" lang='ar' class="arabicCell")!= toArabScript(w.ar_latin)
+div(id="pages")
+  - var n = 1;
+  while n < maxPage
+    a(href="http://localhost:3000/api/arabic/dictionary?page=" + n class="pageItem")= n++

@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost/arabic')
 	.then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.log('Could not connect to MongoDB...', err));
 
-const arabic_words = require('./routes/arabic_words');
+const arabic = require('./routes/arabic');
 //const home = require('./routes/home');
 
 const express = require('express');
@@ -25,7 +25,7 @@ app.get('/api', async (req, res) => {
   res.sendFile(absolutePath);
 });
 
-app.use('/api/arabic_words', arabic_words.router);
+app.use('/api/arabic', arabic.router);
 //app.use('/api/home', home.router);
 
 const port = process.env.PORT || 3000; // ha nincs az első változó, akkor a port értéke 3000 lesz

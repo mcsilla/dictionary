@@ -68,12 +68,6 @@ function toArabScript(word) {
 }
 
 router.use('/', express.static('public'));
-let absolutePath = '/home/majoros/git/dictionary/views/new_words.html';
-
-router.get('/new_words', async (req, res) => { 
-  //res.send('Hello word!!!');
-  res.sendFile(absolutePath);
-});
 
 router.post('/post-feedback', async function (req, res) {
   const newWord = await createWord(req.body);
@@ -92,18 +86,19 @@ router.post('/post-feedback', async function (req, res) {
 // });
 
 	
-router.get('/:selected/:pageNumber', async (req, res) => {
-  const selectedOption = req.params.selected;
-  const pageNumber = req.params.pageNumber || 0;
-  if (!pageNumber) {
-    res.render('arabic_words', { title: 'My Express App', selectedOption: selectedOption});
-  }
-  else {
-    const words = await getWords(pageNumber);
-    const maxPage = await numOfPages() + 1;
-     //res.send('Hello word!!!');
-    res.render('arabic_words', { title: 'My Express App', selectedOption: selectedOption, words: words, toArabScript: toArabScript, maxPage: maxPage});
-    } //rendering dynamic html markup with pug
+router.get('/dictionary', async (req, res) => {
+  //const selectedOption = req.params.selected;
+  const pageNumber = req.params.page;
+  const words = await getWords(pageNumber);
+  const maxPage = await numOfPages() + 1;
+   //res.send('Hello word!!!');
+  res.render('arabic', { 
+    title: 'My Arabic Dictionary', 
+    selectedOption: 'dictionary', 
+    words: words, 
+    toArabScript: toArabScript, 
+    maxPage: maxPage
+  });
 });
 
 

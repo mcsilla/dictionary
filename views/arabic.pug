@@ -1,0 +1,21 @@
+html
+  head
+    meta(charset='utf-8')
+    title= title
+    link(rel="stylesheet" type="text/css" href="../dictionary.css")
+  body
+    div(id="screen")
+      ul(id="navbar")
+        li
+          a(href="http://localhost:3000/api/arabic/dictionary" class=".navItem") Dictionary
+        li
+          a(href="http://localhost:3000/api/arabic/new-word" class=".navItem") New word
+        li
+          a(href="http://localhost:3000/api/arabic/learning" class=".navItem") Learning
+        li
+          a(href="http://localhost:3000/api/arabic/test" class=".navItem") Test 
+        li
+          a(href="http://localhost:3000/api/arabic/statistics" class=".navItem") Statistics 
+      include includes/dictionary.pug        
+
+
